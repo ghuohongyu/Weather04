@@ -1,6 +1,7 @@
 package cn.edu.pku.guohongyu.weather;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -28,6 +29,7 @@ import cn.edu.pku.guohongyu.util.NetUtil;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     private ImageView mUpdateBtn;
+    private ImageView mCitySelect;
     private TextView cityTv,timeTv,humidityTv,weekTv,pmDataTv,pmQualityTv,temperatureTv,climateTv,
     windTv,city_name_Tv;
     private ImageView weatherImg,pmImg;
@@ -61,6 +63,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
             Log.d("myWeather", "网络挂了");
             Toast.makeText(MainActivity.this, "网络挂了！", Toast.LENGTH_LONG).show();
         }
+
+        mCitySelect =(ImageView)findViewById(R.id.title_city_manager);
+        mCitySelect.setOnClickListener(this);
+
         initView();
 
     }
@@ -91,6 +97,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     public void onClick(View view) {
+        if (view.getId()==R.id.title_city_manager){
+            Intent i =new Intent(this,SelectCity.class);
+            startActivity(i);
+        }
         if (view.getId() == R.id.title_update_btn) {
             SharedPreferences sharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
             String cityCode = sharedPreferences.getString("main_ city_code", "101010100");
