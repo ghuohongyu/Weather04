@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.pku.guohongyu.bean.City;
-
+//创建CityDB类
 public class CityDB {
     public static final String CITY_DB_NAME ="city.db";
     private static final String CITY_TABLE_NAME ="city";
@@ -17,6 +17,7 @@ public class CityDB {
         db=context.openOrCreateDatabase(path,Context.MODE_PRIVATE,null);
 
     }
+    //将数据获取到列表中
     public List<City> getAllCity(){
         List<City> list = new ArrayList<City>();
         Cursor c =db.rawQuery("SELECT * from " +CITY_TABLE_NAME,null);
